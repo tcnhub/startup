@@ -4,28 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'title',
         'slug',
         'content',
         'excerpt',
-        'user_id',
         'status',
         'published_at',
+        'admin_id',
+        'is_featured',
+        'allow_comments',
     ];
 
     protected $casts = [
-        'published_at' => 'datetime',
+        'published_at'   => 'datetime',
+        'is_featured'    => 'boolean',
+        'allow_comments' => 'boolean',
     ];
 
-    // Relación con usuario
-    public function user()
+    public function admin()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class);
     }
 }

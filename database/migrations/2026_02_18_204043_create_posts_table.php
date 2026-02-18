@@ -9,6 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('blog_category_id')->nullable()->constrained('post_categories')->nullOnDelete();
             // Polymorphic author: any guard (admin, hotel, guide, etc.)
             $table->nullableMorphs('author');

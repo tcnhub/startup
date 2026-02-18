@@ -85,25 +85,40 @@
                                         {{ $post->published_at ? $post->published_at->format('d/m/Y H:i') : '—' }}
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.posts.show', $post) }}"
-                                           class="btn btn-sm btn-outline-info" title="Ver">
-                                            <i data-feather="eye" style="width:14px;height:14px;"></i>
-                                        </a>
-                                        <a href="{{ route('admin.posts.edit', $post) }}"
-                                           class="btn btn-sm btn-outline-primary" title="Editar">
-                                            <i data-feather="edit-2" style="width:14px;height:14px;"></i>
-                                        </a>
-                                        <form method="POST"
-                                              action="{{ route('admin.posts.destroy', $post) }}"
-                                              class="d-inline"
-                                              onsubmit="return confirm('¿Eliminar este post?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar">
-                                                <i data-feather="trash-2" style="width:14px;height:14px;"></i>
-                                            </button>
-                                        </form>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Acciones para el post">
+                                            <!-- Ver -->
+                                            <a href="{{ route('admin.posts.show', $post->id) }}"
+                                               class="btn btn-outline-secondary"
+                                               title="Ver detalle"
+                                               aria-label="Ver post">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </a>
+
+                                            <!-- Editar -->
+                                            <a href="{{ route('admin.posts.edit', $post->id) }}"
+                                               class="btn btn-outline-primary"
+                                               title="Editar post"
+                                               aria-label="Editar">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+
+                                            <!-- Eliminar -->
+                                            <form method="POST"
+                                                  action="{{ route('admin.posts.destroy', $post->id) }}"
+                                                  onsubmit="return confirm('¿Realmente quieres eliminar este post?')"
+                                                  class="m-0">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                        class="btn btn-outline-danger"
+                                                        title="Eliminar post"
+                                                        aria-label="Eliminar">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
+
                                 </tr>
                             @empty
                                 <tr>
@@ -122,9 +137,8 @@
                         Mostrando {{ $posts->firstItem() ?? 0 }}–{{ $posts->lastItem() ?? 0 }}
                         de {{ $posts->total() }} posts
                     </small>
-                    <div>
-                        {{ $posts->links() }}
-                    </div>
+
+                    {{ $posts->links() }}
                 </div>
 
             </div>

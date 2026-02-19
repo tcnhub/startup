@@ -5,9 +5,7 @@
                 <img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo Claro">
                 <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}" alt="Logo Oscuro">
             </a>
-            <div class="back-btn">
-                <i class="fa fa-angle-left"></i>
-            </div>
+            <div class="back-btn"><i class="fa fa-angle-left"></i></div>
             <div class="toggle-sidebar">
                 <i class="status_toggle middle sidebar-toggle" data-feather="grid"></i>
             </div>
@@ -20,120 +18,133 @@
         </div>
 
         <nav class="sidebar-main">
-            <div class="left-arrow" id="left-arrow">
-                <i data-feather="arrow-left"></i>
-            </div>
+            <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
 
             <div id="sidebar-menu">
                 <ul class="sidebar-links" id="simple-bar">
 
                     <li class="back-btn">
-                        <div class="mobile-back text-end">
-                            <span>Back</span>
-                            <i class="fa fa-angle-right ps-2" aria-hidden="true"></i>
-                        </div>
+                        <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                     </li>
 
                     <!-- Dashboard -->
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') ?? '/' }}">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-home"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-home"></use>
-                            </svg>
+                        <a class="sidebar-link sidebar-title link-nav {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-home"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-home"></use></svg>
                             <span>Dashboard</span>
                         </a>
                     </li>
 
-                    <!-- Menú de ejemplo: Categorías / Productos (adaptado al tema Alimentos y Bebidas) -->
+                    <!-- Posts / Artículos -->
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title {{ request()->routeIs('productos.*') ? 'active' : '' }}" href="#">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-ecommerce"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-ecommerce"></use>
-                            </svg>
-                            <span>Articulos</span>
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}" href="#">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-animation"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-animation"></use></svg>
+                            <span>Artículos</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            <li><a href="#">Lista de Productos</a></li>
-                            <li><a href="#">Nuevo Producto</a></li>
-                            <li><a href="">Categorías</a></li>
-                            <li><a href="">Marcas</a></li>
+                            <li><a href="{{ route('admin.posts.index') }}">Lista de Artículos</a></li>
+                            <li><a href="{{ route('admin.posts.create') }}">Nuevo Artículo</a></li>
                         </ul>
                     </li>
 
-                    <!-- Otro ejemplo: Pedidos -->
+                    <!-- Hoteles -->
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title {{ request()->routeIs('pedidos.*') ? 'active' : '' }}" href="#">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-shopping-bag"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-shopping-bag"></use>
-                            </svg>
-                            <span>Pedidos</span>
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.hoteles.*') ? 'active' : '' }}" href="#">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-ecommerce"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-ecommerce"></use></svg>
+                            <span>Hoteles</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            <li><a href="#">Lista de Productos</a></li>
-                            <li><a href="#">Nuevo Producto</a></li>
-                            <li><a href="">Categorías</a></li>
-                            <li><a href="">Marcas</a></li>
+                            <li><a href="{{ route('admin.hoteles.index') }}">Lista de Hoteles</a></li>
+                            <li><a href="{{ route('admin.hoteles.create') }}">Nuevo Hotel</a></li>
                         </ul>
                     </li>
 
-                    <!-- Animaciones (si las mantienes en el proyecto) -->
+                    <!-- Actividades -->
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title" href="#">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-animation"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-animation"></use>
-                            </svg>
-                            <span>Articulos</span>
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.actividades.*') ? 'active' : '' }}" href="#">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-social"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-social"></use></svg>
+                            <span>Actividades</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            <li><a href="{{ route('admin.posts.index') }}">Lista de Articulos</a></li>
-                            <li><a href="#">Nuevo Articulos</a></li>
-                            <li><a href="">Categorías</a></li>
+                            <li><a href="{{ route('admin.actividades.index') }}">Lista de Actividades</a></li>
+                            <li><a href="{{ route('admin.actividades.create') }}">Nueva Actividad</a></li>
                         </ul>
                     </li>
 
-                    <!-- Soporte y Documentación (enlaces externos) -->
+                    <!-- Restaurantes -->
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title" href="https://pixelstrap.freshdesk.com/support/home" target="_blank">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-social"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-social"></use>
-                            </svg>
-                            <span>Raise Support</span>
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.restaurantes.*') ? 'active' : '' }}" href="#">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-form"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-form"></use></svg>
+                            <span>Restaurantes</span>
                         </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('admin.restaurantes.index') }}">Lista de Restaurantes</a></li>
+                            <li><a href="{{ route('admin.restaurantes.create') }}">Nuevo Restaurante</a></li>
+                        </ul>
                     </li>
 
+                    <!-- Guías -->
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title" href="https://docs.pixelstrap.com/cuba/laravel/document/" target="_blank">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-form"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-form"></use>
-                            </svg>
-                            <span>Documentación</span>
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.guias.*') ? 'active' : '' }}" href="#">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-user"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-user"></use></svg>
+                            <span>Guías</span>
                         </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('admin.guias.index') }}">Lista de Guías</a></li>
+                            <li><a href="{{ route('admin.guias.create') }}">Nuevo Guía</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Transportistas -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.transportistas.*') ? 'active' : '' }}" href="#">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-shopping-bag"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-shopping-bag"></use></svg>
+                            <span>Transportistas</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('admin.transportistas.index') }}">Lista de Transportistas</a></li>
+                            <li><a href="{{ route('admin.transportistas.create') }}">Nuevo Transportista</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Atracciones -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.atracciones.*') ? 'active' : '' }}" href="#">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-others"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-others"></use></svg>
+                            <span>Atracciones</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('admin.atracciones.index') }}">Lista de Atracciones</a></li>
+                            <li><a href="{{ route('admin.atracciones.create') }}">Nueva Atracción</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Mi Perfil -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('admin.profile.*') ? 'active' : '' }}" href="#">
+                            <svg class="stroke-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#stroke-user"></use></svg>
+                            <svg class="fill-icon"><use href="{{ asset('assets/svg/icon-sprite.svg') }}#fill-user"></use></svg>
+                            <span>Mi Perfil</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('admin.profile.edit') }}">Editar Información</a></li>
+                            <li><a href="{{ route('admin.profile.password') }}">Cambiar Contraseña</a></li>
+                            <li><a href="{{ route('admin.profile.gallery') }}">Galería de Fotos</a></li>
+                        </ul>
                     </li>
 
                 </ul>
             </div>
 
-            <div class="right-arrow" id="right-arrow">
-                <i data-feather="arrow-right"></i>
-            </div>
+            <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
         </nav>
     </div>
 </div>

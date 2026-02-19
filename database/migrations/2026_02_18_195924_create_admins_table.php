@@ -16,6 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+
+            // Imagen destacada (featured image) — igual que WordPress
+            $table->foreignId('featured_image_id')
+                ->nullable()
+                ->constrained('media')
+                ->nullOnDelete();
+
+
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

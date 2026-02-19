@@ -11,27 +11,31 @@ class PostSeeder extends Seeder
 {
     public function run(): void
     {
-        $admin = Admin::first(); // Asume el primer usuario existe
+        $admin = Admin::first(); // o el admin que quieras usar
 
-        Post::create([
-            'title' => 'Post de Prueba 1',
-            'slug' => Str::slug('Post de Prueba 1'),
-            'content' => 'Contenido de prueba para el primer post.',
-            'excerpt' => 'Resumen del primer post.',
-            'admin_id' => $admin->id,
-            'status' => 'published',
-            'published_at' => now(),
-        ]);
+        $faker = \Faker\Factory::create('es_ES');
 
-        Post::create([
-            'title' => 'Post de Prueba 2',
-            'slug' => Str::slug('Post de Prueba 2'),
-            'content' => 'Contenido de prueba para el segundo post.',
-            'excerpt' => 'Resumen del segundo post.',
-            'admin_id' => $admin->id,
-            'status' => 'draft',
-        ]);
+        $statuses = ['draft', 'published', 'scheduled', 'archived'];
 
-        // Agrega más si necesitas
+        for ($i = 0; $i < 100; $i++) {
+
+            $title = $faker->unique()->sentence(rand(3, 6));
+
+            $status = $faker->randomElement($statuses);
+
+            Post::create([
+                'title'          => $title,
+                'slug'           => Str::slug($title),
+                'content'        => $faker->paragraphs(rand(5, 12), true),
+                'excerpt'        => $faker->sentence(15),
+                'admin_id'       => $admin->id,
+                'status'         => $status,
+                'is_featured'    => $faker->boolean(20), // 20% destacados
+                'allow_comments' => $faker->boolean(80), // 80% permiten comentarios
+                'published_at'   => $status === 'published'
+                    ? $faker->dateTimeBetween('-6 months', 'now')
+                    : null,
+            ]);
+        }
     }
 }

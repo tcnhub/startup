@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPhotos;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Agencia extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasPhotos;
 
     protected $guard = 'agencia';
     protected $table = 'agencias';
@@ -18,6 +19,7 @@ class Agencia extends Authenticatable
         'telefono',
         'direccion',
         'password',
+        'profile_photo',
     ];
 
     protected $hidden = [

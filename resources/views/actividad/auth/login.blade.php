@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Actividades</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/vendors/bootstrap.css') }}">
+    <style>
+        body { background: #f5f7fa; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+        .login-card { max-width:420px; width:100%; }
+    </style>
+</head>
+<body>
+<div class="login-card card shadow p-4">
+    <h4 class="mb-4 text-center fw-bold">Panel — Actividades</h4>
+
+    @if($errors->any())
+        <div class="alert alert-danger">{{ $errors->first() }}</div>
+    @endif
+
+    <form method="POST" action="{{ route('actividad.login') }}">
+        @csrf
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" value="{{ old('email') }}" required autofocus>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" name="remember" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Recordarme</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+    </form>
+</div>
+<script src="{{ asset('assets/js/vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

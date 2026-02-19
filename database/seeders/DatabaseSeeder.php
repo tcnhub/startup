@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PostSeeder::class,
+            HotelSeeder::class,
+            ActividadSeeder::class,
+            RestauranteSeeder::class,
+            GuiaSeeder::class,
+            TransportistaSeeder::class,
+            AtraccionSeeder::class,
         ]);
     }
 }
